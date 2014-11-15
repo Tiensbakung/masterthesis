@@ -1,0 +1,11 @@
+#!/bin/sh
+echo -n "random.shuffle [$1]: "
+python -m timeit -s "from random import shuffle; l = range($1)" "shuffle(l)" 
+echo -n "numpy.random.shuffle [$1]: "
+python -m timeit -s "from numpy.random import shuffle; l = range($1)" "shuffle(l)"
+echo -n "numpy.random.shuffle arange[$1]: "
+python -m timeit -s "import numpy; from numpy.random import shuffle; l = numpy.arange($1)" "shuffle(l)"
+echo -n "numpy.random.permutation [$1]: "
+python -m timeit -s "from numpy.random  import permutation; l = range($1)" "l = permutation(l)"
+echo -n "numpy.random.permutation arange[$1]: "
+python -m timeit -s "import numpy; from numpy.random  import permutation; l = numpy.arange($1)" "l = permutation(l)"
